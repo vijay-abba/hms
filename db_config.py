@@ -6,7 +6,7 @@ from exceptions.custom_exceptions import DatabaseConnectionError
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "Phani@225",
+    "password": "vijay@123",
     "database": "hms",
 }
 
