@@ -13,7 +13,8 @@ DB_CONFIG = {
 
 class DBConnection:
 
-    def get_connection(self):
+    @staticmethod
+    def get_connection():
         try:
             conn = mysql.connector.connect(**DB_CONFIG)
             if conn.is_connected():
@@ -25,6 +26,17 @@ class DBConnection:
         except Error as e:
             raise DatabaseConnectionError(f"MySQL error : {e}")
 
+    @staticmethod
+    def close(conn, cursor=None):
+        if cursor:
+            cursor.close()
+            print("Connection closed for cursor")
+        if conn and conn.is_connected():
+            conn.close()
+            print("Connection closed for conn")
 
-dbObj = DBConnection()
-dbObj.get_connection()
+
+
+conn = DBConnection.get_connection()
+print(conn)
+DBConnection.close(conn)

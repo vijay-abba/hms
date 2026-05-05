@@ -7,3 +7,8 @@ class HMSBaseExpection(Exception):
 class DatabaseConnectionError(HMSBaseExpection):
     def __init__(self, message="Failed to connnect to the database"):
         super().__init__(message)
+
+
+class DuplicateRecordError(HMSBaseExpection):
+    def __init__(self, entity, field, value ):
+        message = f"{entity} with {field} = {value} already exist"

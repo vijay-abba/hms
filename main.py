@@ -1,4 +1,21 @@
+from exceptions.custom_exceptions import HMSBaseExpection
+from modules.department import Department
+
+
+def safe_run(func, *args, **kwargs):
+
+    try:
+        return func(*args, **kwargs)
+    except HMSBaseExpection as e:
+        print(f"\n[ERROR] {e.message}")
+    except KeyboardInterrupt:
+        print("\n[Info] Operation cancelled by user.\n")
+    except Exception as e:
+        print(f"\n [UNEXPECTED ERROR] {e}\n")
+
+
 def department_menu():
+    dept = Department()
     while True:
         print("\n ---- Department Management ----")
         print("1. Add Department")
@@ -11,7 +28,14 @@ def department_menu():
         dep_choice = input("Enter choice: ").strip()
 
         if dep_choice == "1":
-            print("adding")
+
+            def _add():
+                dept_name = input("Enter Department name: ")
+                dept_code = input("Enter Department code: ")
+                dept.add(department_name=dept_name, department_name=dept_code)
+
+            safe_run(_add)
+
         elif dep_choice == "2":
             print("view all")
         elif dep_choice == "3":
