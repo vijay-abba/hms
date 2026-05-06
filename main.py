@@ -32,7 +32,7 @@ def department_menu():
             def _add():
                 dept_name = input("Enter Department name: ")
                 dept_code = input("Enter Department code: ")
-                dept.add(department_name=dept_name, department_name=dept_code)
+                dept.add(department_name=dept_name, department_code=dept_code)
 
             safe_run(_add)
 
